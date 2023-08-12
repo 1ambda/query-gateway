@@ -1,0 +1,36 @@
+springdoc:
+  packages-to-scan:com.github.lambda.querygateway
+  default-consumes-media-type:application/json;charset=UTF-8
+  default-produces-media-type:application/json;charset=UTF-8
+
+swagger-ui:
+  path:/
+  disable-swagger-default-url:true
+  display-request-duration:true
+  operations-sorter:alpha
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    org.springframework.web.client.RestTemplate: TRACE
+    log4j.logger.org.springframework.web.client: DEBUG
+
+    logging.level.org.apache.http: DEBUG
+    logging.level.httpclient.wire: DEBUG
+
+management.endpoints.web.exposure.include: '*'
+#spring:
+#  mvc:
+#    log-request-details: true
+
+spring:
+  cloud:
+    gateway:
+      httpclient:
+        ssl:
+          useInsecureTrustManager: true
+
+spring.devtools.restart.enabled: false
+spring.autoconfigure.exclude:
+  - org.springframework.cloud.gateway.mvc.config.ProxyResponseAutoConfiguration
